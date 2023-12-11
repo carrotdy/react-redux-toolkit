@@ -1,14 +1,13 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { ITodosState } from "../modules/todos";
+import { Todo } from "../modules/todos";
 
 interface TodosProps {
-  todos: ITodosState;
+  todos: Todo[];
   onCreate: (text: string) => void;
   onToggle: (id: number) => void;
 }
 
 const Todos: React.FC<TodosProps> = ({ todos, onCreate, onToggle }) => {
-  // 리덕스를 사용한다고 해서 모든 상태를 리덕스에서 관리해야하는 것은 아닙니다.
   const [text, setText] = useState<string>("");
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
     setText(e.target.value);
@@ -18,8 +17,8 @@ const Todos: React.FC<TodosProps> = ({ todos, onCreate, onToggle }) => {
     setText(""); // 인풋 초기화
   };
 
-  // 컴포넌트 최적화를 위하여 React.memo를 사용합니다
-  const TodoItem: React.FC<{ todo }> = React.memo(({ todo }) => (
+  // 컴포넌트 최적화를 위하여 React.memo를 사용
+  const TodoItem: React.FC<{ todo: Todo }> = React.memo(({ todo }) => (
     <li
       style={{ textDecoration: todo.done ? "line-through" : "none" }}
       onClick={() => onToggle(todo.id)}
@@ -28,10 +27,9 @@ const Todos: React.FC<TodosProps> = ({ todos, onCreate, onToggle }) => {
     </li>
   ));
 
-  // 컴포넌트 최적화를 위하여 React.memo를 사용합니다
-  const TodoList: React.FC<{ todos }> = React.memo(({ todos }) => (
+  const TodoList: React.FC<{ todos:Todo[] }> = React.memo(({ todos }) => (
     <ul>
-      {todos.map((todo) => (
+      {todos.map((todo: Todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
     </ul>
