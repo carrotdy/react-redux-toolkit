@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Todos from "../components/Todos.tsx";
-import { Todo, todoActions } from "../modules/todos.tsx";
+import { Todo, todoActions } from "../modules/Todos.tsx";
 
 interface IRootState {
   todos: Todo[];

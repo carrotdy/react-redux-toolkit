@@ -6,7 +6,7 @@ import {
   decrease,
   setDiff,
   ICounterState,
-} from "../modules/counter.tsx";
+} from "../modules/Counter.tsx";
 
 interface IRootState {
   counter: ICounterState;

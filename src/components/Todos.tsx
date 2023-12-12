@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { Todo } from "../modules/todos";
+import { Todo } from "../modules/Todos";
 
 interface TodosProps {
   todos: Todo[];
